@@ -1,6 +1,3 @@
-<h1>Welcome to Sveltefirebase</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-
 <script lang="ts">
   import Book from '../components/Book.svelte';
   interface BookInterface {
