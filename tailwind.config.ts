@@ -6,8 +6,7 @@ import type { Config } from 'tailwindcss';
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {extend: {}},
+	theme: { extend: {} },
 	plugins: [typography, forms, containerQueries, daisyui],
-	daisyui: { themes: ["light"] },
-
+	daisyui: { themes: ['corporate'] }
 } satisfies Config;
