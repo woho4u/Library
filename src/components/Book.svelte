@@ -5,7 +5,9 @@
 <div class="w-1/3 p-4">
 	<div class="card-sm border-1 border-gray50 card card-side h-52 w-full border p-4">
 		<figure>
-			<img src={book.coverImage} alt="Movie" class="h-full w-auto" />
+			<a href={'/' + book.id}>
+				<img src={book.coverImage} alt="Movie" class="h-full w-auto" />
+			</a>
 		</figure>
 		<div class="grow-1 card-body px-4 py-0">
 			<div>
@@ -13,7 +15,7 @@
 				<p class="text-secondary" style="">{book.author}</p>
 			</div>
 
-			<p>Genre: {book.genre}</p>
+			<p>{book.genre}</p>
 			<div class="flex gap-2">
 				{#each book.keywords as keyword}
 					<span class="badge">{keyword}</span>
