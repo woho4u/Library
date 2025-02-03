@@ -48,6 +48,10 @@
 			.then((data: BookInterface) => {
 				console.log(data);
 				showToast({ message: 'Operation successful!', type: 'success', duration: 3000 });
+			})
+			.catch((error) => {
+				console.error('Error fetching books:', error);
+				showToast({ message: error, type: 'error', duration: 3000 });
 			});
 	}
 </script>
