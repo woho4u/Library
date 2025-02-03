@@ -26,7 +26,7 @@
           <ul class="menu menu-horizontal">
             <!-- Navbar menu content here -->
             <li><a href="/search" class="hover:underline">Search</a></li>
-            <li><a href="/add" class="hover:underline">Add Book</a></li>
+            <li><a href="/add" class="hover:underline" >Add Book</a></li>
           </ul>
         </div>
       </div>
