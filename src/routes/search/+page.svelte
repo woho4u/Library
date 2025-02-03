@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import Book from '../../components/Book.svelte';
 	import Toast from '../../components/Toast.svelte';
-	import {toast, showToast} from '../../stores/toast';
 	interface BookInterface {
 		title: string;
 		author: string;
@@ -57,7 +56,8 @@
 		<input type="text" class="grow" placeholder="Search" oninput={search} />
 	</label>
 </div>
-<div class="container">
+
+<div class="container flex flex-wrap">
 	{#each books as book}
 		<Book {book} />
 	{/each}
