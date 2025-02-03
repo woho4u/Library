@@ -2,7 +2,7 @@
 	import Input from '../../components/Input.svelte';
 	import { onMount } from 'svelte';
 	import Toast from '../../components/Toast.svelte';
-	import { showToast, toast } from '../../stores/toast';
+	import { showToast } from '../../stores/toasts';
 
 	interface BookInterface {
 		title: string;
@@ -29,7 +29,6 @@
 
 	function submit(event: any) {
 		event.preventDefault();
-		showToast({ message: 'Book added successfully', type: 'success' });
 
 		book.keywords = keyWordString.split(',').map((keyword) => keyword.trim());
 
@@ -48,6 +47,7 @@
 			})
 			.then((data: BookInterface) => {
 				console.log(data);
+				showToast({ message: 'Operation successful!', type: 'success', duration: 3000 });
 			});
 	}
 </script>
@@ -56,13 +56,7 @@
 	<form class="flex w-full flex-col gap-2" action="">
 		<div class="flex gap-2">
 			<label class="input input-bordered flex w-3/5 items-center gap-2">
-				<input
-					defaultValue="Title"
-					type="text"
-					class="grow"
-					placeholder="title"
-					bind:value={book.title}
-				/>
+				<input type="text" class="grow" placeholder="title" bind:value={book.title} />
 			</label>
 			<!-- <label class="input input-bordered flex items-center gap-2 w-2/5">
         <input defaultValue="genre" type="text" class="grow" placeholder="Genre" bind:value={book.genre}/>
@@ -76,24 +70,16 @@
 		</div>
 
 		<label class="input input-bordered flex items-center gap-2">
-			<input
-				defaultValue="author"
-				type="text"
-				class="grow"
-				placeholder="author"
-				bind:value={book.author}
-			/>
+			<input type="text" class="grow" placeholder="author" bind:value={book.author} />
 		</label>
 		<textarea
 			class="textarea textarea-bordered"
-			defaultValue="description"
 			placeholder="description"
 			bind:value={book.description}
 		></textarea>
 
 		<label class="input input-bordered flex items-center gap-2">
 			<input
-				defaultValue=""
 				type="text"
 				class="grow"
 				placeholder="Comma Separated Keywords"
@@ -102,7 +88,6 @@
 		</label>
 		<label class="input input-bordered flex items-center gap-2">
 			<input
-				defaultValue=""
 				type="date"
 				class="grow"
 				placeholder="Published Date"
@@ -110,13 +95,7 @@
 			/>
 		</label>
 		<label class="input input-bordered flex items-center gap-2">
-			<input
-				defaultValue="https://www.norli.no/media/catalog/product/9/7/9788202459772_1.jpg?auto=webp&format=pjpg&width=960&height=1200&fit=cover"
-				type="text"
-				class="grow"
-				placeholder="Cover Image"
-				bind:value={book.coverImage}
-			/>
+			<input type="text" class="grow" placeholder="Cover Image" bind:value={book.coverImage} />
 		</label>
 		<button class="rounded-lg" onclick={(e) => submit(e)}>Add Book</button>
 	</form>
