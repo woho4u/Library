@@ -7,8 +7,9 @@
 		author: string;
 		description: string;
 		genre: string;
-		keywords: string;
+		keywords: string[];
 		published_date: string;
+		coverImage: string;
 	}
 	let books: BookInterface[] = $state([]);
 	let searchTerm = $state('');
@@ -61,73 +62,4 @@
 	{#each books as book}
 		<Book {book} />
 	{/each}
-</div>
-
-<div class="flex flex-col gap-6">
-	<!-- PRIMARY -->
-	<div>
-		<h2 class="mb-2 font-bold">Primary</h2>
-		<div class="flex gap-2">
-			<!-- --p, --pf, --pc -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--p));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--pf));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--pc));"></div>
-		</div>
-	</div>
-
-	<!-- SECONDARY -->
-	<div>
-		<h2 class="mb-2 font-bold">Secondary</h2>
-		<div class="flex gap-2">
-			<!-- --s, --sf, --sc -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--s));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--sf));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--sc));"></div>
-		</div>
-	</div>
-
-	<!-- ACCENT -->
-	<div>
-		<h2 class="mb-2 font-bold">Accent</h2>
-		<div class="flex gap-2">
-			<!-- --a, --af, --ac -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--a));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--af));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--ac));"></div>
-		</div>
-	</div>
-
-	<!-- NEUTRAL -->
-	<div>
-		<h2 class="mb-2 font-bold">Neutral</h2>
-		<div class="flex gap-2">
-			<!-- --n, --nf, --nc -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--n));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--nf));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--nc));"></div>
-		</div>
-	</div>
-
-	<!-- BASE (100, 200, 300, content) -->
-	<div>
-		<h2 class="mb-2 font-bold">Base</h2>
-		<div class="flex gap-2">
-			<!-- --b1, --b2, --b3, --bc -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--b1));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--b2));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--b3));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--bc));"></div>
-		</div>
-	</div>
-
-	<!-- INFO -->
-	<div>
-		<h2 class="mb-2 font-bold">Info</h2>
-		<div class="flex gap-2">
-			<!-- --in, --inf, --inc -->
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--in));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--inf));"></div>
-			<div class="h-[15px] w-[15px]" style="background-color: rgb(var(--inc));"></div>
-		</div>
-	</div>
 </div>
