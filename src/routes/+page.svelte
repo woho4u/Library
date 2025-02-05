@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 	import Book from '../components/Book.svelte';
 	import Toast from '../components/Toast.svelte';
+	import Icon from '@iconify/svelte';
+	import { browser } from '$app/environment';
+
 	interface BookInterface {
 		title: string;
 		author: string;
@@ -11,10 +14,19 @@
 		published_date: string;
 		coverImage: string;
 	}
+
 	let books: BookInterface[] = $state([]);
 	let searchTerm = $state('');
-
-	console.log('fetching books');
+	let addingToList = $state(false);
+	let bookToAdd = $state(0);
+	if (browser) {
+		let userid = localStorage.getItem('loginId');
+	}
+	let currentReadingLists: ReadingList[] = $state([]);
+	interface ReadingList {
+		name: string;
+		books: number[];
+	}
 
 	function search(event: any = null, search: string = '') {
 		searchTerm = !search ? event.target.value : search;
@@ -38,6 +50,26 @@
 	onMount(() => {
 		search(null, 'en');
 	});
+
+	async function handleAddingToReadingList(bookId: number) {
+		console.log('Adding to reading list');
+		toggleAddingToList();
+		bookToAdd = bookId;
+
+		const response = await fetch('http://127.0.0.1:8000/api/users/?search=' + userid)
+		const userData = await response.json();
+		const user = userData[0];
+		
+		currentReadingLists = user.readingLists;
+	}
+	function toggleAddingToList() {
+		console.log('Toggle adding to list');
+		addingToList = !addingToList;
+		console.log('addingToList', addingToList);
+	};
+	function addToReadingList () {
+		console.log('Add to reading list');
+	}
 </script>
 
 <div>
@@ -60,6 +92,24 @@
 
 <div class="container flex flex-wrap">
 	{#each books as book}
-		<Book {book} />
+		<Book {book} handleAddingToReadingList={handleAddingToReadingList}/>
 	{/each}
 </div>
+
+{#if addingToList}
+	<div
+		class="absolute top-0 z-50 flex h-full w-full items-center justify-center bg-black opacity-60"
+	>
+		<div class="relative flex h-52 w-1/3 flex-col items-center justify-center bg-white p-4">
+			<button class="absolute right-0 top-0 p-2" onclick={toggleAddingToList}>
+				<Icon icon="material-symbols:close" width="24" height="24" />
+			</button>
+			<div class="join join-vertical gap-2">
+				{#each currentReadingLists as readingList}
+					<button class="btn btn-primary">{readingList.name}</button>
+				{/each}
+				<button class="btn btn-primary" onsubmit={addToReadingList}>Login</button>
+			</div>
+		</div>
+	</div>
+{/if}
