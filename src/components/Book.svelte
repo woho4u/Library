@@ -1,13 +1,15 @@
 <script>
 	import Icon from '@iconify/svelte';
 
-	let { book, handleAddingToReadingList} = $props();
-
+	let { book, handleAddingToReadingList } = $props();
 </script>
 
 <div class="w-1/3 p-4">
 	<div class="card-sm border-1 border-gray50 card card-side h-52 w-full border p-4">
-		<button class="btn btn-ghost btn-sm absolute right-0 top-0" onclick={handleAddingToReadingList(book.id)}>
+		<button
+			class="btn btn-ghost btn-sm absolute right-0 top-0"
+			onclick={() => handleAddingToReadingList(book.id)}
+		>
 			<Icon icon="material-symbols:format-list-bulleted-add" width="28" height="28" />
 		</button>
 		<figure>
@@ -36,7 +38,6 @@
 		</div>
 	</div>
 </div>
-
 
 <style>
 	.card:hover {

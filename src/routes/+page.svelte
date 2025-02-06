@@ -19,8 +19,12 @@
 	let searchTerm = $state('');
 	let addingToList = $state(false);
 	let bookToAdd = $state(0);
+	let userid = 0;
 	if (browser) {
-		let userid = localStorage.getItem('loginId');
+		let loggedInTo = localStorage.getItem('loginId');
+		console.log('Logged in to:', loggedInTo);
+		userid = loggedInTo ? parseInt(loggedInTo, 10) : 0;
+		console.log('User ID:', userid);
 	}
 	let currentReadingLists: ReadingList[] = $state([]);
 	interface ReadingList {
@@ -56,19 +60,22 @@
 		toggleAddingToList();
 		bookToAdd = bookId;
 
-		const response = await fetch('http://127.0.0.1:8000/api/users/?search=' + userid)
+		const response = await fetch('http://127.0.0.1:8000/api/users/?search=' + userid);
 		const userData = await response.json();
 		const user = userData[0];
-		
+
 		currentReadingLists = user.readingLists;
 	}
 	function toggleAddingToList() {
 		console.log('Toggle adding to list');
 		addingToList = !addingToList;
 		console.log('addingToList', addingToList);
-	};
-	function addToReadingList () {
-		console.log('Add to reading list');
+	}
+	async function addToReadingList(index: number) {
+		console.log('Adding to reading list:', index);
+		const readingList = currentReadingLists[index];
+		console.log(readingList);
+		fetch('http://127.0.0.1:8000/api/users/?search=' + userid);
 	}
 </script>
 
@@ -92,7 +99,7 @@
 
 <div class="container flex flex-wrap">
 	{#each books as book}
-		<Book {book} handleAddingToReadingList={handleAddingToReadingList}/>
+		<Book {book} {handleAddingToReadingList} />
 	{/each}
 </div>
 
@@ -105,10 +112,12 @@
 				<Icon icon="material-symbols:close" width="24" height="24" />
 			</button>
 			<div class="join join-vertical gap-2">
-				{#each currentReadingLists as readingList}
-					<button class="btn btn-primary">{readingList.name}</button>
+				{#each currentReadingLists as readingList, i}
+					<button class="btn btn-primary" onclick={() => addToReadingList(i)}
+						>{readingList.name}</button
+					>
 				{/each}
-				<button class="btn btn-primary" onsubmit={addToReadingList}>Login</button>
+				<!-- <button class="btn btn-primary" onsubmit={addToReadingList}>Login</button> -->
 			</div>
 		</div>
 	</div>
