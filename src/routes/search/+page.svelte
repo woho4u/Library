@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import { onMount } from 'svelte';
 	import Book from '../../components/Book.svelte';
 	import Toast from '../../components/Toast.svelte';
@@ -62,4 +62,4 @@
 	{#each books as book}
 		<Book {book} />
 	{/each}
-</div>
+</div> -->
