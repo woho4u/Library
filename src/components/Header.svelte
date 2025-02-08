@@ -42,6 +42,7 @@
 					<!-- Navbar menu content here -->
 					<li><a href="/search" class="hover:underline">Search</a></li>
 					<li><a href="/add" class="hover:underline">Add Book</a></li>
+					<li><a href="/reading-lists" class="hover:underline">Reading Lists</a></li>
 					<li><button class="hover:underline" onclick={activateLogin}>Login</button></li>
 				</ul>
 			</div>
@@ -54,6 +55,7 @@
 			<!-- Sidebar content here -->
 			<li><a href="/search" class="hover:underline">Search</a></li>
 			<li><a href="/add" class="hover:underline">Add Book</a></li>
+			<li><a href="/reading-lists" class="hover:underline">Reading Lists</a></li>
 			<li><button class="hover:underline" onclick={activateLogin}>Login</button></li>
 		</ul>
 	</div>
