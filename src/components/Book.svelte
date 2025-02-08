@@ -8,7 +8,7 @@
 	<div class="card-sm border-1 border-gray50 card card-side h-52 w-full border p-4">
 		<button
 			class="btn btn-ghost btn-sm absolute right-0 top-0"
-			onclick={() => handleAddingToReadingList(book.id)}
+			onclick={() => handleAddingToReadingList(book)}
 		>
 			<Icon icon="material-symbols:format-list-bulleted-add" width="28" height="28" />
 		</button>
@@ -32,7 +32,9 @@
 
 			<div class="card-actions justify-end"></div>
 			<div class="card-actions">
-				<button class="btn btn-primary btn-sm">Read</button>
+				<button class="btn btn-error btn-sm">
+					<Icon icon="ic:baseline-delete-forever" width="24" height="24" />
+				</button>
 				<button class="btn btn-outline btn-primary btn-sm">Edit</button>
 			</div>
 		</div>
@@ -40,25 +42,4 @@
 </div>
 
 <style>
-	.card:hover {
-		transform: scale(1.05);
-		--tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-		--tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color),
-			0 8px 10px -6px var(--tw-shadow-color);
-		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-			var(--tw-shadow);
-	}
-	.card:hover .card-actions {
-		opacity: 1;
-		display: flex;
-	}
-	.card-actions {
-		opacity: 0;
-		transition: 200ms;
-		display: none;
-	}
-	.card {
-		transition: 200ms;
-		border-color: rgb(var(--));
-	}
 </style>
